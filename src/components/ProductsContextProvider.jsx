@@ -1,4 +1,5 @@
 import {createContext, useEffect, useState} from 'react'
+
 import data from "./../data/data"
 
 const ProductsContext = createContext(null);
@@ -13,7 +14,7 @@ function ProductsContextProvider({children}) {
 
     useEffect(()=>{
         console.log(brands);
-        setFD(data.filter((elem)=>{if((category==='All' || category === elem.category) && (elem.title.toLowerCase().includes(search.toLowerCase()) && (brands.length===0 || brands.includes(elem.company))))return true;}));
+        setFD(data.filter((elem)=>{if((category==='All' || category === elem.category) && (elem.title.toLowerCase().includes(search.toLowerCase()) && (brands.length===0 || brands.includes(elem.company.toLowerCase()))))return true;}));
     },[search,category,brands])
     return (
         <ProductsContext.Provider value={{FilteredProducts:filteredData}}> 

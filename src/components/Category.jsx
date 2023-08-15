@@ -2,20 +2,22 @@ import { useContext, useEffect, useState } from "react"
 import { FilterContext } from "./ProductsContextProvider"
 
 
-function Category() {
+function Category({brand}) {
+ 
   const {categoryFilter,brandsFilter} = useContext(FilterContext);
   const [curCat,setCat] = useState("All");
   const [brands,setBrands] = useState([]);
 
   useEffect(()=>categoryFilter(curCat),[curCat]);
-  useEffect(()=>brandsFilter(brands),[brands]);
+
+  useEffect(()=>{if(brand)brandsFilter([brand.toLowerCase()]);else brandsFilter(brands);},[brands]);
 
   function brandsetter(e){
     { 
-      if(e.target.checked){setBrands([...brands,e.target.id])}
+      if(e.target.checked){setBrands([...brands,e.target.id.toLowerCase()])}
       else{
         let x = structuredClone(brands);
-        x.splice(brands.indexOf(e.target.id),1);
+        x.splice(brands.indexOf(e.target.id.toLowerCase()),1);
         setBrands(x);
       }
     }
@@ -46,7 +48,7 @@ function Category() {
         </div>
         <br/>
 
-      <h1 className="text-lg mx-auto font-bold tracking-tight text-gray-900">Brands</h1>
+      {brand==null && <><h1 className="text-lg mx-auto font-bold tracking-tight text-gray-900">Brands</h1>
         <div>
         <input type="checkbox" id="Nike" onChange={brandsetter}></input>
         <label htmlFor="Nike" className="text-md mx-auto font-bold tracking-tight text-gray-500"> Nike</label>
@@ -63,7 +65,7 @@ function Category() {
         <input type="checkbox" id="Vans" onChange={brandsetter}></input>
         <label htmlFor="Vans" className="text-md mx-auto font-bold tracking-tight text-gray-500"> Vans</label>
         </div>
-        <br/>
+        <br/></>}
       </div>
   )
 }

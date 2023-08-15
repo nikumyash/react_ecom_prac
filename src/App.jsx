@@ -6,6 +6,7 @@ import Profile from './pages/Profile'
 import Footer from './components/Footer'
 import {ProductsContextProvider} from './components/ProductsContextProvider'
 import { CartContextProvider } from './components/CartContextProvider'
+import ProductsPage from './pages/Shop'
 
 function App() {
   return (<>
@@ -14,9 +15,11 @@ function App() {
         <BrowserRouter>
           <Navbar/>
           <Routes>
-            <Route path="/" element={<Home/>}></Route>
-            <Route path="/cart" element={<Cart/>}></Route>
-            <Route path="/profile" element={<Profile/>}></Route>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/shop" element={<ProductsPage/>}/>
+            <Route path="/shop/:brand" element={<ProductsPage/>}/>
+            <Route path="/cart" element={<Cart/>}/>
+            <Route path="/profile" element={<Profile/>}/>
           </Routes>
           <Footer/>
         </BrowserRouter>

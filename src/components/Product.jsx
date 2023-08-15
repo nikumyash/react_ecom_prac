@@ -6,7 +6,7 @@ import { useContext } from 'react';
 function Product({product}){
   const CartDispatch = useContext(CartDispatchs)
   return (
-      <div className="group relative border-2 border-gray-100 p-2 mx-auto w-80 md:w-60">
+      <div className="group relative border-2 border-gray-100 p-2 mx-auto sm:w-60 ">
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
           <img
             src={product.img}
